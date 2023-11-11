@@ -11,78 +11,79 @@ export const useLocalStorage = (fn?: () => void) => {
         }
     }, [storage])
 
-    function getLocalStorageItems() {
-        const items: { [x: string]: string | null }[] = []
+    const getValue = (itemKey: string) => {
+        const items = Object.values(storage)
 
-        const keys = Object.keys(localStorage)
-
-        keys.forEach(key => {
-            items.push({ [key]: localStorage.getItem(key) })
-        })
-
-        return items
-    }
-
-    const getItem = (key: string) => {
-        return localStorage.getItem(key)
-    }
-
-    const getMultipleItems = (keys: string[]) => {
-        const items: string[] = []
-
-        keys.forEach(key => {
-            const item = localStorage.getItem(key)
-            if (item) {
-                items.push(item)
+        for (const item of items) {
+            if (itemKey in item) {
+                return item[itemKey]
             }
+        }
+
+        return null
+    }
+
+    const getMultipleValues = (keys: string[]) => {
+        const multipleValues: string[] = []
+
+        keys.forEach(key => {
+            const value = getValue(key) as string
+            multipleValues.push(value)
         })
 
-        return items
+        return multipleValues
     }
 
     const addItem = (key: string, value: string) => {
-        checkItem(key)
+        const item = checkItem(key)
 
-        localStorage.setItem(key, value)
-
-        setStorage([...storage, { [key]: value }])
+        if (!item) {
+            localStorage.setItem(key, value)
+            setStorage([...storage, { [key]: value }])
+        }
     }
 
     const addMultipleItems = (items: { key: string; value: string }[]) => {
-        items.forEach(item => {
-            const { key, value } = item
-            localStorage.setItem(key, value)
-            setStorage([...storage, { key, value }])
-        })
+        for (const item of items) {
+            addItem(item.key, item.value)
+        }
     }
 
     const deleteItem = (key: string) => {
-        if (!localStorage.getItem(key)) {
+        const item = checkItem(key)
+        if (!item) {
             throw new Error('This item does not exist in the local storage')
         }
 
-        checkItem(key)
-
-        localStorage.removeItem(key)
-
-        setStorage(getLocalStorageItems())
+        if (item) {
+            localStorage.removeItem(key)
+            setStorage(getLocalStorageItems())
+        }
     }
 
     const deleteMultipleItems = (keys: string[]) => {
         keys.forEach(key => {
-            checkItem(key)
-            localStorage.removeItem(key)
-            setStorage(getLocalStorageItems())
+            const item = checkItem(key)
+            if (item) {
+                localStorage.removeItem(key)
+                setStorage(getLocalStorageItems())
+            }
         })
     }
 
-    const checkItem = (key: string) => {
-        if (!localStorage.getItem(key)) {
-            throw new Error('This item does not exist in the local storage')
-        }
+    return { storage, getValue, getMultipleValues, addItem, addMultipleItems, deleteItem, deleteMultipleItems }
+}
 
-        return true
-    }
+export const checkItem = (key: string) => localStorage.getItem(key)
 
-    return { storage, getItem, getMultipleItems, addItem, addMultipleItems, deleteItem, deleteMultipleItems }
+export const getLocalStorageItems = () => {
+    const items: { [x: string]: string | null }[] = []
+
+    const keys = Object.keys(localStorage)
+
+    keys.forEach(key => {
+        items.push({ [key]: localStorage.getItem(key) })
+    })
+
+    return items
 }
