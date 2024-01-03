@@ -22,7 +22,7 @@ export const useMouse = (mouseEvent: Event, fn?: () => void) => {
         return () => {
             window.removeEventListener(mouseEvent, handleMouseEvent)
         }
-    }, [mousePoisition])
+    }, [mousePoisition, fn, mouseEvent])
 
     return mousePoisition
 }

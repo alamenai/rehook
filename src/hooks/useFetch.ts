@@ -3,11 +3,11 @@ import { useEffect, useState } from 'react'
 export const useFetch = (url: string, trigger?: boolean, requestOptions?: RequestInit) => {
     const [error, setError] = useState('')
 
-    const [data, setData] = useState<any | undefined>(undefined)
+    const [data, setData] = useState<undefined>(undefined)
 
     const [isLoading, setLoading] = useState(!trigger || false)
 
-    const [onTrigger, _setTrigger] = useState(trigger)
+    const [onTrigger, setTrigger] = useState(trigger)
 
     const fetchData = async () => {
         try {
@@ -30,6 +30,10 @@ export const useFetch = (url: string, trigger?: boolean, requestOptions?: Reques
             setLoading(false)
         }
     }
+
+    useEffect(() => {
+        setTrigger(trigger)
+    }, [trigger])
 
     useEffect(() => {
         if (!onTrigger) {

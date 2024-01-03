@@ -9,7 +9,7 @@ export const useLocalStorage = (fn?: () => void) => {
         if (fn && typeof fn == 'function') {
             fn()
         }
-    }, [storage])
+    }, [storage, fn])
 
     const getValue = (itemKey: string) => {
         const items = Object.values(storage)
