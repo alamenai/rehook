@@ -63,11 +63,7 @@ export const useLocalStorage = (fn?: () => void) => {
 
     const deleteMultipleItems = (keys: string[]) => {
         keys.forEach(key => {
-            const item = checkItem(key)
-            if (item) {
-                localStorage.removeItem(key)
-                setStorage(getLocalStorageItems())
-            }
+            deleteItem(key)
         })
     }
 
