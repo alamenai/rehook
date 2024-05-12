@@ -75,8 +75,20 @@ export default App
  
 ```
 
+#### API
+##### `setCookie`
 
+**Desscription**
 
+**Type**
+
+Function
+
+**Parameters**
+
+* `key`:_string_
+* `value`:_string_
+* `options`:_CookieOptions_
 
 
 
