@@ -1,4 +1,4 @@
-<h1 align='center'>Rehook</h1>
+<div align='center'><img src="./src/assets/icon.png"/></div>
 
 <h3 align='center'>Copy, Paste & Customize your hook.</h3>
 <h4 align='center'><a href="https://github.com/alamenai/rehook/tree/main/src/hooks" target="_blank" >Browse hooks</a></h4>
