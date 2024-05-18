@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export function useUnsavedChangesConfirmation() {
+export function useUnsavedFormChanges() {
     const [isFormChanged, setIsFormChanged] = useState(false)
 
     const setFormChanged = (value: boolean) => {
@@ -8,9 +8,11 @@ export function useUnsavedChangesConfirmation() {
     }
 
     useEffect(() => {
-        const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+        const handleBeforeUnload = (event: { returnValue: string }) => {
             if (isFormChanged) {
-                event.returnValue = 'You have unsaved changes. Are you sure you want to go?'
+                const confirmationMessage = 'You have unsaved changes. Are you sure you want to leave?'
+                event.returnValue = confirmationMessage
+                return confirmationMessage
             }
         }
 
