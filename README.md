@@ -9,6 +9,14 @@ Rehook offers a curated collection of custom hooks designed to streamline your d
 
 <b>It's not a library or a package to install.</b>
 
+# Why it's not a library or a package?
+
+I mean you do not install it as a dependency. It is not available or distributed via npm.
+
+Pick the hook you need. Copy and paste the code into your project and customize to your needs. The code is yours.
+
+The idea behind this is to give you ownership and control over the code, allowing you to change, remove or add more code.
+
 # Get Started
 
 Jhon: In my React project , I want a ready-to-use hook for handling cookies but I would change it later.
