@@ -21,7 +21,7 @@ For more hooks just browse the [hooks](https://github.com/alamenai/rehook/tree/m
 
 > I would recommend creating a folder called `hooks` inside your project to store all the hooks in one place.
 
-## Use Cookie
+## 1. Use Cookie
 
 Use Cookie allows you to manage the web cookies.
 
@@ -94,3 +94,76 @@ Function
 -   `key`:_string_
 -   `value`:_string_
 -   `options`:_CookieOptions_
+
+## 2. Use Unsaved Form Changes
+
+The useUnsavedFormChanges hook is a custom React hook designed to track unsaved changes in a form. It provides functionalities to monitor changes made to form data and alert users if they attempt to leave the page without saving.
+
+### Add hook
+
+2. Create a file `use-usaved-form-changes.ts` and copy & paste the code from [use-unsaved-form-changes](https://github.com/alamenai/rehook/blob/main/src/hooks/use-unsaved-form-changes.ts).
+
+### Usage
+
+#### Track unsaved changes
+
+```jsx
+
+import { useUnsavedFormChanges } from './hooks/use-unsaved-form-changes'
+import { useState, SyntheticEvent } from 'react'
+
+function App() {
+    const [formData, setFormData] = useState('') // Assuming your form data is stored in state
+    const { setFormChanged } = useUnsavedFormChanges()
+
+    const handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
+        // Update form data and mark as changed
+        setFormData(event.currentTarget.value)
+        setFormChanged(true)
+    }
+
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', marginLeft: 900, gap: 10, fontSize: 24 }}>
+            <input
+                type="text"
+                name="example"
+                value={formData}
+                onChange={handleChange}
+                style={{ height: 44, width: 280, fontSize: 18, paddingInline: 12 }}
+            />
+            <button>Save</button>
+        </div>
+    )
+}
+
+export default App
+
+```
+
+#### API
+
+##### `setFormChanged(newValue: boolean): void`
+
+**Desscription**
+
+The `setFormChanged` function is a part of the custom hook useUnsavedFormChanges. It is responsible for updating the state to indicate whether the form has been changed or not.
+
+When invoked with a boolean value (true or false), it updates the internal state accordingly, reflecting whether changes have been made to the form data.
+
+**Parameters**
+
+`newValue (boolean)`: The new value indicating whether the form has been changed (true) or not (false).
+
+**Returns**
+
+`void`: This function does not return any value.
+
+##### `isFormChanged: booleand`
+
+**Desscription**
+
+The `isFormChanged` variable is a part of the custom hook useUnsavedFormChanges. It represents whether the form has been changed or not. When the form data is modified, this variable is updated accordingly to indicate that changes have been made.
+
+**Returns**
+
+`boolean`: The current state of whether the form has been changed. If changes have been made to the form data, it returns true; otherwise, it returns false.
