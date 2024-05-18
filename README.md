@@ -1,4 +1,4 @@
-<h1 align='center'>Rehook</h1>
+<div align='center'><img src="./src/assets/icon.png"/></div>
 
 <h3 align='center'>Copy, Paste & Customize your hook.</h3>
 <h4 align='center'><a href="https://github.com/alamenai/rehook/tree/main/src/hooks" target="_blank" >Browse hooks</a></h4>
@@ -95,7 +95,6 @@ Function
 -   `value`:_string_
 -   `options`:_CookieOptions_
 
-
 ## 2. Use Unsaved Form Changes
 
 The useUnsavedFormChanges hook is a custom React hook designed to track unsaved changes in a form. It provides functionalities to monitor changes made to form data and alert users if they attempt to leave the page without saving.
@@ -158,7 +157,6 @@ When invoked with a boolean value (true or false), it updates the internal state
 **Returns**
 
 `void`: This function does not return any value.
-
 
 ##### `isFormChanged: booleand`
 
