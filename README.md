@@ -5,29 +5,39 @@
 
 # What is Rehook?
 
-Rehook offers a curated collection of custom hooks designed to streamline your development process by eliminating the need to repeatedly implement the same hooks across different projects. With Rehook, all it takes is a simple copy, paste, and customization to enhance your projects effortlessly.
+A collection of **custom** and **reusable** hooks designed to streamline your development process by eliminating the need to repeatedly implement the same hooks across different projects. With Rehook, all it takes is a simple **copy**, **paste**, and **customize** the code based on your needs.
 
 <b>It's not a library or a package to install.</b>
 
-# Why it's not a library or a package?
+## FAQ
 
-I mean you do not install it as a dependency. It is not available or distributed via npm.
+<details>
+  <summary>Why it's not a library or a package?</summary>
+    <br/>
+  <p>I mean you do not install it as a dependency. It is not available or distributed via npm.
+    <a href="https://github.com/alamenai/rehook/tree/main/src/hooks" target="_blank" >Pick the hook </a> you need. Copy and paste the code into your project and customize it based on your needs. The code is yours.</p>
+     The idea behind this is to give you ownership and control over the code, allowing you to change, remove or add more code.
+</details>
 
-Pick the hook you need. Copy and paste the code into your project and customize to your needs. The code is yours.
+<details>
+  <summary>Do you plan to publish it as npm package?</summary>
+    <br/>
+  <p>No. I have no plans to publish it as an npm package.</p>
+</details>
 
-The idea behind this is to give you ownership and control over the code, allowing you to change, remove or add more code.
+<details>
+  <summary>Which frameworks are supported</summary>
+    <br/>
+  <p>I would say any framework that supports React.</p>
+</details>
 
-# Get Started
-
-Jhon: In my React project , I want a ready-to-use hook for handling cookies but I would change it later.
-
-Me: OKAY. Just copy and paste `useCookie` hook from [use-cookie](https://github.com/alamenai/rehook/blob/main/src/hooks/use-cookie.ts) and do your changes. That's it!
-
-For more hooks just browse the [hooks](https://github.com/alamenai/rehook/tree/main/src/hooks) folder.
+<details>
+  <summary>How can I add it to my project?</summary>
+    <br/>
+  <p>This project is written in TypeScript. I recommend using TypeScript for your projects as well. Create a folder named <code>hooks</code> inside your project and pick a hook from this <a href='https://github.com/alamenai/rehook/tree/main/src/hooks'>list</a> that solves your problem, then import it inside your component. That's it!</p>
+</details>
 
 # Hooks
-
-> I would recommend creating a folder called `hooks` inside your project to store all the hooks in one place.
 
 ## 1. Use Cookie
 
