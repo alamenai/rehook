@@ -1,6 +1,6 @@
 import { useAbortController } from '../useAbortController'
 import { renderHook } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 
 describe('useAbortController', () => {
     it('should return the signal of the passed controller', () => {

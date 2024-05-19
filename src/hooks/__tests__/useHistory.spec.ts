@@ -1,6 +1,6 @@
 import { useHistory } from '../useHistory'
 import { renderHook } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 
 describe('useHistory', () => {
     it('should return the same number of pages', () => {

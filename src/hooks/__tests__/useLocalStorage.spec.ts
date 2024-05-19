@@ -1,6 +1,6 @@
 import { checkItem, getLocalStorageItems, useLocalStorage } from '../useLocalStorage'
 import { renderHook } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 
 test('useLocalStorage should return local storage items after first call', () => {
     const { result } = renderHook(() => useLocalStorage())
