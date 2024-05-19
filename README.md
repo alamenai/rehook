@@ -158,8 +158,6 @@ export default App
 
 ```
 
-#### API
-
 ##### `setFormChanged(newValue: boolean): void`
 
 **Desscription**
@@ -185,3 +183,116 @@ The `isFormChanged` variable is a part of the custom hook useUnsavedFormChanges.
 **Returns**
 
 `boolean`: The current state of whether the form has been changed. If changes have been made to the form data, it returns true; otherwise, it returns false.
+
+## 3.  useQueryParams
+
+This custom hook provides functionalities for managing query parameters in the URL.
+
+
+### Add hook
+
+2. Create a file `use-query-params.ts` and copy & paste the code from [useQueryParams](https://github.com/alamenai/rehook/blob/main/src/hooks/use-query-params.ts).
+
+### Usage
+
+```tsx
+
+import { useQueryParams } from './hooks/use-query-params'
+import { useEffect, useState } from 'react'
+
+function App() {
+    const { urlParams, set, setEncoded } = useQueryParams()
+    const [name, setName] = useState('')
+    const [age, setAge] = useState('')
+    const [profession, setProfession] = useState('')
+    const [country, setCountry] = useState('')
+
+    useEffect(() => {
+        setName(urlParams.get('name') || '')
+        setAge(urlParams.get('age') || '')
+        setProfession(urlParams.get('profession') || '')
+        setCountry(urlParams.get('country') || '')
+    }, [urlParams])
+
+    const handleSetParams = () => {
+        set('name', 'alaeddine')
+        set('age', 30)
+    }
+
+    const handleSetEncodedParams = () => {
+        const person = { profession: 'engineer', country: 'Algeria' }
+        setEncoded(person)
+    }
+
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginLeft: 200 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                <button onClick={handleSetParams}>Set Params</button>
+                <button onClick={handleSetEncodedParams}>Set Encoded Params</button>
+            </div>
+            <p>Name: {name}</p>
+            <p>Age: {age}</p>
+            <p>Profession: {profession}</p>
+            <p>Country: {country}</p>
+        </div>
+    )
+}
+
+export default App
+
+```
+### API
+
+**Rertuns**
+
+`get(param: string)`: `string | undefined`
+
+##### Description
+
+Retrieves the value of a specific query parameter from the URL.
+
+##### Parameters
+
+`param (string)`: The name of the query parameter to retrieve.
+
+##### Returns
+
+`string | undefined`: The value of the specified query parameter if found; otherwise, undefined.
+
+**Returns**
+
+`getAll(): Map<string, string>`
+
+##### Description
+
+Retrieves all query parameters from the URL as a map.
+
+##### Returns
+
+`Map<string, string>:` A map containing all query parameters, where the keys are parameter names and the values are parameter values.
+`set(key: string, value:` string | number): void
+
+###### Description
+
+Sets a query parameter in the URL to the specified value.
+
+###### Parameters
+
+`key (string)`: The name of the query parameter to set.
+`value (string | number)`: The value to set for the query parameter.
+
+**Returns**
+
+`setEncoded(obj: { [s: string]: string | number } | ArrayLike<string>): void`: This function does not return any value.
+
+###### Description
+
+Sets multiple query parameters in the URL based on the provided object or array.
+
+###### Parameters
+
+`obj ({ [s: string]: string | number } | ArrayLike<string>)`: An object or array containing key-value pairs of query parameters to set.
+
+#### Returns
+
+`void`: This function does not return any value.
