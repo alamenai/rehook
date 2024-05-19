@@ -1,35 +1,45 @@
+import { NEXT_DEFAULT_ENV_VARS, VITE_DEFAULT_ENV_VARS } from '../constants/env'
 import { rehookConfig } from '../rehook.config'
 import { useEffect, useState } from 'react'
 
-const VITE_DEFAULT_ENV_VARS = ['BASE_URL', 'NODE', 'MODE', 'DEV', 'PROD', 'SSR']
-
 const { ignoreDefaultEnv, framework } = rehookConfig
 
-export const useEnv = () => {
-    const envVars = Object.keys(import.meta.env)
+const isFrameworkVite = framework === 'VITE' // Otherwise it is NEXTJS
 
-    const [variables, setVariables] = useState<string[]>(envVars)
+export const useEnv = () => {
+    const envVars = isFrameworkVite ? import.meta.env : process.env
+
+    const [variables, setVariables] = useState(envVars)
 
     const ignoreDefaultVariables = () => {
+        let ignoredVariables: { [key: string]: string }
+
         if (ignoreDefaultEnv) {
-            if (framework === 'VITE') {
-                const ignoredVariables = variables.filter(variable => !VITE_DEFAULT_ENV_VARS.includes(variable))
-                setVariables(ignoredVariables)
+            ignoredVariables = {}
+            for (const key in variables) {
+                if (isFrameworkVite ? !VITE_DEFAULT_ENV_VARS.includes(key) : !NEXT_DEFAULT_ENV_VARS.includes(key)) {
+                    ignoredVariables[key] = variables[key]
+                }
             }
+            setVariables(ignoredVariables)
         }
     }
 
+    const addVariable = (variable: string, value: string) => {
+        setVariables(prevVars => ({ ...prevVars, [variable]: value }))
+    }
+
     const renameVariable = (oldVar: string, newVar: string) => {
-        const index = variables.indexOf(oldVar)
-        if (index !== -1) {
-            const updatedEnv = [...variables]
-            updatedEnv[index] = newVar
+        if (Object.prototype.hasOwnProperty.call(variables, oldVar)) {
+            const updatedEnv = { ...variables }
+            updatedEnv[newVar] = updatedEnv[oldVar]
+            delete updatedEnv[oldVar]
             setVariables(updatedEnv)
         }
     }
 
     const updateVariable = (currentVarVar: string, newValue: string) => {
-        if (variables.includes(currentVarVar)) {
+        if (Object.prototype.hasOwnProperty.call(variables, currentVarVar)) {
             setVariables(prevEnv => ({
                 ...prevEnv,
                 [currentVarVar]: newValue,
@@ -38,9 +48,10 @@ export const useEnv = () => {
     }
 
     const removeVariable = (currentVar: string) => {
-        if (variables.includes(currentVar)) {
-            const filteredVars = variables.filter(value => value !== currentVar)
-            setVariables(filteredVars)
+        if (Object.prototype.hasOwnProperty.call(variables, currentVar)) {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            const { [currentVar]: _, ...updatedVariables } = variables
+            setVariables(updatedVariables)
         }
     }
 
@@ -58,5 +69,5 @@ export const useEnv = () => {
         ignoreDefaultVariables()
     }, [])
 
-    return { variables, renameVariable, updateVariable, saveVariable, removeVariable, deleteVariable }
+    return { variables, addVariable, renameVariable, updateVariable, saveVariable, removeVariable, deleteVariable }
 }
