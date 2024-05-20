@@ -23,6 +23,23 @@ export const useLocalStorage = (fn?: () => void) => {
         return null
     }
 
+    const renameKey = (oldKey: string, newKey: string) => {
+        const item = checkItem(oldKey)
+
+        if (!item) {
+            throw new Error('This item does not exist in the local storage')
+        }
+
+        const value = localStorage.getItem(oldKey)
+
+        localStorage.removeItem(oldKey)
+
+        if (value) {
+            localStorage.setItem(newKey, value)
+            setStorage(getLocalStorageItems())
+        }
+    }
+
     const getMultipleValues = (keys: string[]) => {
         const multipleValues: string[] = []
 
@@ -61,13 +78,35 @@ export const useLocalStorage = (fn?: () => void) => {
         }
     }
 
+    const deleteItemAfterDelay = (key: string, time: number) => {
+        setTimeout(() => {
+            deleteItem(key)
+        }, time)
+    }
+
     const deleteMultipleItems = (keys: string[]) => {
         keys.forEach(key => {
             deleteItem(key)
         })
     }
 
-    return { storage, getValue, getMultipleValues, addItem, addMultipleItems, deleteItem, deleteMultipleItems }
+    const clearLocalStorage = () => {
+        localStorage.clear()
+        setStorage([])
+    }
+
+    return {
+        storage,
+        getValue,
+        getMultipleValues,
+        addItem,
+        addMultipleItems,
+        renameKey,
+        deleteItem,
+        deleteItemAfterDelay,
+        deleteMultipleItems,
+        clearLocalStorage,
+    }
 }
 
 export const checkItem = (key: string) => localStorage.getItem(key)
