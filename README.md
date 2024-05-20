@@ -296,3 +296,192 @@ Sets multiple query parameters in the URL based on the provided object or array.
 #### Returns
 
 `void`: This function does not return any value.
+
+
+## 4. useLocalStorage
+
+This custom hook provides functionalities for managing data in the browser's local storage within React components.
+
+
+### Add hook
+
+2. Create a file `use-local-storage.ts` and copy & paste the code from [useLocalStorage](https://github.com/alamenai/rehook/blob/main/src/hooks/use-local-storage.ts).
+
+### Usage
+
+```tsx
+import React, { useEffect } from 'react';
+import { useLocalStorage } from './hooks/use-local-storage';
+
+function App() {
+    const { storage, addItem, renameKey, getValue, deleteItem, deleteItemAfterDelay, clearLocalStorage } =
+        useLocalStorage();
+
+    const handleNewItem = () => {
+        addItem('mode', 'dark');
+    };
+
+    const handleDeleteItem = () => {
+        deleteItem('mode');
+    };
+
+    const handleDeleteItemAfterDelay = () => {
+        deleteItemAfterDelay('color', 2000);
+    };
+
+    const handleRenameItem = () => {
+        renameKey('mode', 'color');
+    };
+
+    useEffect(() => {
+        clearLocalStorage();
+    }, []);
+
+    useEffect(() => {
+        console.log(storage);
+    }, [storage]);
+
+    useEffect(() => {
+        const retrievedValue = getValue('color');
+        console.log('Retrieved value:', retrievedValue);
+    }, [getValue]);
+
+    return (
+        <div>
+            <h1>Local Storage Demo</h1>
+            <button onClick={handleNewItem}>Add Item</button>
+            <button onClick={handleDeleteItem}>Delete Item</button>
+            <button onClick={handleRenameItem}>Rename Key</button>
+            <button onClick={handleDeleteItemAfterDelay}>Delete After 2s</button>
+        </div>
+    );
+}
+
+export default App;
+
+
+```
+### API
+
+**Rertuns**
+
+`storage`
+
+##### Description
+
+An array representing the current state of local storage items..
+
+**Returns**
+
+`getValue(itemKey: string): string | null`
+
+##### Description
+
+Retrieves the value of a specific item from local storage.
+
+###### Parameters
+
+`itemKey (string)`: The key of the item to retrieve.
+
+##### Returns
+
+`string | null`: The value of the specified item if found; otherwise, null.
+
+**Returns**
+
+`renameKey(oldKey: string, newKey: string): void`
+
+###### Description
+
+Renames a key in the local storage.
+
+###### Parameters
+
+* `oldKey (string)`: The current key name.
+* `newKey (string)`: The new key name.
+
+**Returns**
+
+`getMultipleValues(keys: string[]): string[]`
+
+###### Description
+
+Retrieves values for multiple items from local storage.
+
+###### Parameters
+
+`keys (string[])`: An array of keys to retrieve values for.
+
+###### Returns
+
+`string[]`: An array containing values of the specified keys.
+
+**Returns**
+
+`addItem(key: string, value: string): void`
+ 
+###### Description
+ 
+Adds a new item to the local storage.
+
+###### Parameters
+
+* `key (string)`: The key of the item to add.
+* `value (string)`: The value of the item to add.
+
+**Returns**
+
+`addMultipleItems(items: { key: string; value: string }[]): void`
+
+###### Description
+
+Adds multiple items to the local storage.
+
+###### Parameters
+
+`items ({ key: string; value: string }[])`: An array of objects containing key-value pairs to add.
+
+**Returns**
+
+`deleteItem(key: string): void`
+
+###### Description
+
+Deletes an item from the local storage.
+
+###### Parameters
+
+`key (string)`: The key of the item to delete.
+
+**Returns**
+
+`deleteItemAfterDelay(key: string, time: number): void`
+
+###### Description
+
+Deletes an item from the local storage after a specified delay.
+
+###### Parameters
+
+* `key (string)`: The key of the item to delete.
+* `time (number)`: The delay time in milliseconds.
+
+**Returns**
+
+`deleteMultipleItems(keys: string[]): void`
+
+###### Description
+
+Deletes multiple items from the local storage.
+
+###### Parameters
+
+`keys (string[])`: An array of keys of the items to delete.
+
+**Returns**
+
+`clearLocalStorage(): void`
+
+###### Description
+
+Clears all items from the local storage.
