@@ -9,6 +9,10 @@ export const usePersistentState = <PesistentState>(
         const item = localStorage.getItem(key)
 
         if (item) {
+            if (parseFloat(item)) {
+                return parseFloat(item) as PesistentState
+            }
+
             return item as PesistentState
         }
 
