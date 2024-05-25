@@ -305,7 +305,7 @@ This custom hook provides functionalities for managing data in the browser's loc
 
 ### Add hook
 
-2. Create a file `use-local-storage.ts` and copy & paste the code from [useLocalStorage](https://github.com/alamenai/rehook/blob/main/src/hooks/use-local-storage.ts).
+Create a file `use-local-storage.ts` and copy & paste the code from [useLocalStorage](https://github.com/alamenai/rehook/blob/main/src/hooks/use-local-storage.ts).
 
 ### Usage
 
@@ -485,3 +485,55 @@ Deletes multiple items from the local storage.
 ###### Description
 
 Clears all items from the local storage.
+
+
+## 5. usePersistentState
+This custom hook enables the persistence of state in the browser's local storage within React components.
+
+### Add Hook
+
+Create a file `use-persistent-state.ts` and copy & paste the code from [usePersistent](https://github.com/alamenai/rehook/blob/main/src/hooks/use-persistent-state.ts).
+
+   
+### Usage
+
+```jsx
+
+import React from 'react';
+import { usePersistentState } from './usePersistentState';
+
+const Counter = () => {
+    const [count, setCount] = usePersistentState('count', 10)
+
+    const incrementCount = () => setCount((prev: number) => prev + 1)
+
+    const decrementCount = () => setCount((prev: number) => prev - 1)
+
+    return (
+        <div>
+            <p>{count}</p>
+            <div>
+                <button onClick={incrementCount}>+</button>
+                <button onClick={decrementCount}>-</button>
+            </div>
+        </div>
+    )
+};
+
+export default Counter;
+
+```
+
+### API
+
+**Returns**
+
+`[state, setState]`
+
+##### Description
+
+An array containing the state value and a function to update the state.
+
+`state`: The current state value.
+
+`setStae`: A function to update the state.
