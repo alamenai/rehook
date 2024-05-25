@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 
+export type Item = string | number | object | null
+
 export const useLocalStorage = (fn?: () => void) => {
     const items = getLocalStorageItems()
 
-    const [storage, setStorage] = useState<{ [x: string]: string | null }[]>(items)
+    const [storage, setStorage] = useState<{ [x: string]: Item }[]>(items)
 
     useEffect(() => {
         if (fn && typeof fn == 'function') {
@@ -51,13 +53,19 @@ export const useLocalStorage = (fn?: () => void) => {
         return multipleValues
     }
 
-    const addItem = (key: string, value: string) => {
-        const item = checkItem(key)
-
-        if (!item) {
-            localStorage.setItem(key, value)
-            setStorage([...storage, { [key]: value }])
+    const addItem = (key: string, value: Item) => {
+        if (typeof value === 'object') {
+            localStorage.setItem(key, JSON.stringify(value))
         }
+        if (typeof value === 'number') {
+            localStorage.setItem(key, value.toString())
+        }
+
+        if (typeof value === 'string') {
+            localStorage.setItem(key, value)
+        }
+
+        setStorage([...storage, { [key]: value }])
     }
 
     const addMultipleItems = (items: { key: string; value: string }[]) => {

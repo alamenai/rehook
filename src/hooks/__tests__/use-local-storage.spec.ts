@@ -3,6 +3,10 @@ import { renderHook, waitFor } from '@testing-library/react'
 import { act } from 'react'
 
 describe('useLocalStorage', () => {
+    beforeAll(() => {
+        localStorage.clear()
+    })
+
     it('should clear the local storage', () => {
         const { result } = renderHook(() => useLocalStorage())
 
@@ -36,13 +40,13 @@ describe('useLocalStorage', () => {
 
         act(() => result.current.renameKey('name', 'firstname'))
 
-        expect(localStorage.getItem('firstname')).not.toBeNull()
+        expect(result.current.getValue('firstname')).not.toBeNull()
     })
 
     it('should delete the item', () => {
         const { result } = renderHook(() => useLocalStorage())
 
-        act(() => result.current.addItem('age', '30'))
+        act(() => result.current.addItem('age', 30))
 
         act(() => result.current.deleteItem('age'))
 
