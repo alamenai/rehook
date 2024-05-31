@@ -1,5 +1,7 @@
 import { useUnsavedFormChanges } from '../use-unsaved-form-changes'
-import { renderHook, act } from '@testing-library/react'
+import { renderHook } from '@testing-library/react'
+import { act } from 'react'
+import { vitest } from 'vitest'
 
 describe('useUnsavedFormChanges', () => {
     it('should initialize with isFormChanged as false', () => {
@@ -19,8 +21,8 @@ describe('useUnsavedFormChanges', () => {
     })
 
     it('should add and remove event listener for beforeunload', () => {
-        const addEventListenerSpy = jest.spyOn(window, 'addEventListener')
-        const removeEventListenerSpy = jest.spyOn(window, 'removeEventListener')
+        const addEventListenerSpy = vitest.spyOn(window, 'addEventListener')
+        const removeEventListenerSpy = vitest.spyOn(window, 'removeEventListener')
 
         const { unmount } = renderHook(() => useUnsavedFormChanges())
 
