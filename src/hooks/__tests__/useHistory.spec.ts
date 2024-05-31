@@ -1,4 +1,4 @@
-import { useHistory } from '../useHistory'
+import { useHistory } from '../use-history'
 import { renderHook } from '@testing-library/react'
 import { act } from 'react-dom/test-utils'
 
