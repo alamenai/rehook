@@ -1,4 +1,4 @@
-import { useUnsavedFormChanges } from '../useUnsavedFormChanges'
+import { useUnsavedFormChanges } from '../use-unsaved-form-changes'
 import { renderHook, act } from '@testing-library/react'
 
 describe('useUnsavedFormChanges', () => {
