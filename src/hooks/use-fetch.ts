@@ -13,6 +13,8 @@ export const useFetch = <DataType>(url: string, trigger = true, requestOptions?:
 
     const fetchData = async () => {
         try {
+            setIsLoading(true)
+
             const response = await fetch(url, requestOptions)
 
             if (!response.ok) {
