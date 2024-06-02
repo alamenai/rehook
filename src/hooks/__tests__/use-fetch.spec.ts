@@ -2,7 +2,7 @@ import { useFetch } from '../use-fetch'
 import { renderHook, waitFor } from '@testing-library/react'
 
 describe('useFetch', () => {
-    it('should fetch data immmediately', async () => {
+    it('should fetch data immmediately', () => {
         const url = 'https://jsonplaceholder.typicode.com/posts'
 
         const { result } = renderHook(() => useFetch(url))
@@ -11,14 +11,14 @@ describe('useFetch', () => {
 
         expect(result.current.error).toBe(undefined)
 
-        await waitFor(() => expect(result.current.data).not.toBeUndefined())
+        waitFor(() => expect(result.current.data).not.toBeUndefined())
 
-        await waitFor(() => expect(result.current.error).toBe(undefined))
+        waitFor(() => expect(result.current.error).toBe(undefined))
 
-        await waitFor(() => expect(result.current.isLoading).toBe(false))
+        waitFor(() => expect(result.current.isLoading).toBe(false))
     })
 
-    it('should not fetch data immmediately trigger is false', async () => {
+    it('should not fetch data immmediately trigger is false', () => {
         const url = 'https://jsonplaceholder.typicode.com/posts'
 
         const { result } = renderHook(() => useFetch(url, false))
@@ -28,19 +28,19 @@ describe('useFetch', () => {
         expect(result.current.error).toBe(undefined)
     })
 
-    it('should fetch data immediately trigger is true', async () => {
+    it('should fetch data immediately trigger is true', () => {
         const url = 'https://jsonplaceholder.typicode.com/posts'
 
         const { result } = renderHook(() => useFetch(url, true))
 
-        expect(result.current.data).toBeUndefined()
+        waitFor(() => expect(result.current.data).not.toBeUndefined())
 
-        expect(result.current.error).toBe(undefined)
+        waitFor(() => expect(result.current.error).toBe(undefined))
 
-        expect(result.current.isLoading).toBe(false)
+        waitFor(() => expect(result.current.isLoading).toBe(false))
     })
 
-    it('should handle errors', async () => {
+    it('should handle errors', () => {
         const url = 'https://jsonplaceholder.typicode.com/wrong'
 
         const { result } = renderHook(() => useFetch(url))
@@ -49,7 +49,7 @@ describe('useFetch', () => {
 
         expect(result.current.error).toBe(undefined)
 
-        await waitFor(() => {
+        waitFor(() => {
             expect(result.current.data).toBeUndefined()
 
             expect(result.current.error?.message.length).toBeGreaterThan(0)
