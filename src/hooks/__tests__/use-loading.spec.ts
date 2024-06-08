@@ -1,6 +1,6 @@
-import { useLoading } from '../useLoading'
+import { useLoading } from '../use-loading'
 import { renderHook } from '@testing-library/react'
-import { act } from 'react-dom/test-utils'
+import { act } from 'react'
 
 describe('useLoading', () => {
     it('should return false when it called first time', () => {

@@ -184,10 +184,9 @@ The `isFormChanged` variable is a part of the custom hook useUnsavedFormChanges.
 
 `boolean`: The current state of whether the form has been changed. If changes have been made to the form data, it returns true; otherwise, it returns false.
 
-## 3.  useQueryParams
+## 3. useQueryParams
 
 This custom hook provides functionalities for managing query parameters in the URL.
-
 
 ### Add hook
 
@@ -196,7 +195,6 @@ This custom hook provides functionalities for managing query parameters in the U
 ### Usage
 
 ```tsx
-
 import { useQueryParams } from './hooks/use-query-params'
 import { useEffect, useState } from 'react'
 
@@ -239,8 +237,8 @@ function App() {
 }
 
 export default App
-
 ```
+
 ### API
 
 **Rertuns**
@@ -297,11 +295,9 @@ Sets multiple query parameters in the URL based on the provided object or array.
 
 `void`: This function does not return any value.
 
-
 ## 4. useLocalStorage
 
 This custom hook provides functionalities for managing data in the browser's local storage within React components.
-
 
 ### Add hook
 
@@ -310,41 +306,41 @@ Create a file `use-local-storage.ts` and copy & paste the code from [useLocalSto
 ### Usage
 
 ```tsx
-import React, { useEffect } from 'react';
-import { useLocalStorage } from './hooks/use-local-storage';
+import { useLocalStorage } from './hooks/use-local-storage'
+import React, { useEffect } from 'react'
 
 function App() {
     const { storage, addItem, renameKey, getValue, deleteItem, deleteItemAfterDelay, clearLocalStorage } =
-        useLocalStorage();
+        useLocalStorage()
 
     const handleNewItem = () => {
-        addItem('mode', 'dark');
-    };
+        addItem('mode', 'dark')
+    }
 
     const handleDeleteItem = () => {
-        deleteItem('mode');
-    };
+        deleteItem('mode')
+    }
 
     const handleDeleteItemAfterDelay = () => {
-        deleteItemAfterDelay('color', 2000);
-    };
+        deleteItemAfterDelay('color', 2000)
+    }
 
     const handleRenameItem = () => {
-        renameKey('mode', 'color');
-    };
+        renameKey('mode', 'color')
+    }
 
     useEffect(() => {
-        clearLocalStorage();
-    }, []);
+        clearLocalStorage()
+    }, [])
 
     useEffect(() => {
-        console.log(storage);
-    }, [storage]);
+        console.log(storage)
+    }, [storage])
 
     useEffect(() => {
-        const retrievedValue = getValue('color');
-        console.log('Retrieved value:', retrievedValue);
-    }, [getValue]);
+        const retrievedValue = getValue('color')
+        console.log('Retrieved value:', retrievedValue)
+    }, [getValue])
 
     return (
         <div>
@@ -354,13 +350,12 @@ function App() {
             <button onClick={handleRenameItem}>Rename Key</button>
             <button onClick={handleDeleteItemAfterDelay}>Delete After 2s</button>
         </div>
-    );
+    )
 }
 
-export default App;
-
-
+export default App
 ```
+
 ### API
 
 **Rertuns**
@@ -397,8 +392,8 @@ Renames a key in the local storage.
 
 ###### Parameters
 
-* `oldKey (string)`: The current key name.
-* `newKey (string)`: The new key name.
+-   `oldKey (string)`: The current key name.
+-   `newKey (string)`: The new key name.
 
 **Returns**
 
@@ -419,15 +414,15 @@ Retrieves values for multiple items from local storage.
 **Returns**
 
 `addItem(key: string, value: string): void`
- 
+
 ###### Description
- 
+
 Adds a new item to the local storage.
 
 ###### Parameters
 
-* `key (string)`: The key of the item to add.
-* `value (string)`: The value of the item to add.
+-   `key (string)`: The key of the item to add.
+-   `value (string)`: The value of the item to add.
 
 **Returns**
 
@@ -463,8 +458,8 @@ Deletes an item from the local storage after a specified delay.
 
 ###### Parameters
 
-* `key (string)`: The key of the item to delete.
-* `time (number)`: The delay time in milliseconds.
+-   `key (string)`: The key of the item to delete.
+-   `time (number)`: The delay time in milliseconds.
 
 **Returns**
 
@@ -486,15 +481,14 @@ Deletes multiple items from the local storage.
 
 Clears all items from the local storage.
 
-
 ## 5. usePersistentState
+
 This custom hook enables the persistence of state in the browser's local storage within React components.
 
 ### Add Hook
 
 Create a file `use-persistent-state.ts` and copy & paste the code from [usePersistent](https://github.com/alamenai/rehook/blob/main/src/hooks/use-persistent-state.ts).
 
-   
 ### Usage
 
 ```jsx

@@ -1,4 +1,4 @@
-import { useBattery } from '../useBattery'
+import { useBattery } from '../use-battery'
 import { renderHook } from '@testing-library/react'
 
 describe('useBattery', () => {

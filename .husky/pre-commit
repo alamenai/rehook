@@ -3,4 +3,4 @@
 
 npx lint-staged
 
-npm test
+npm test --run
