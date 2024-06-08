@@ -1,4 +1,4 @@
-import { useUrl } from '../useUrl'
+import { useUrl } from '../use-url'
 import { renderHook } from '@testing-library/react'
 
 const OLD_LOCATION = window.location
