@@ -35,11 +35,12 @@
         "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-refresh": "^0.4.5",
         "husky": "^8.0.3",
+        "vitest-fetch-mock": "^0.2.2",
         "jsdom": "^24.0.0",
         "lint-staged": "^15.2.0",
         "prettier": "3.0.3",
         "typescript": "^5.3.3",
-        "vite": "^4.5.1",
+        "vite": "^4.5.3",
         "vitest": "^1.6.0"
     }
 }
