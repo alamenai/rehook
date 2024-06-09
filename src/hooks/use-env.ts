@@ -1,5 +1,4 @@
-import { NEXT_DEFAULT_ENV_VARS, VITE_DEFAULT_ENV_VARS } from '../constants/env'
-import { rehookConfig } from '../rehook.config'
+import { NEXT_DEFAULT_ENV_VARS, VITE_DEFAULT_ENV_VARS, rehookConfig } from '../../rehook.config'
 import { useEffect, useState } from 'react'
 
 const { ignoreDefaultEnv, framework } = rehookConfig

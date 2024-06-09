@@ -1,22 +1,21 @@
-import './App.css';
-import { useQueryParams } from './hooks/useQueryParams';
+import './App.css'
+import { useQueryParams } from './hooks/useQueryParams'
 // import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
-import { useState } from 'react';
+import { useState } from 'react'
 
 function App() {
-    const [count, setCount] = useState(0);
-    const { get, set } = useQueryParams();
+    const [count, setCount] = useState(0)
+    const { get, set } = useQueryParams()
     const handleClick = () => {
-        set('page', '2');
-      };
+        set('page', '2')
+    }
 
     return (
         <>
             <div>
                 <p>Current page: {get('page') || 'N/A'}</p>
                 <button onClick={handleClick}>Go to page 2</button>
-             </div>
+            </div>
             <div>
                 <a href="https://vitejs.dev" target="_blank">
                     {/* <img src={viteLogo} className="logo" alt="Vite logo" /> */}
@@ -34,7 +33,7 @@ function App() {
             </div>
             <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
         </>
-    );
+    )
 }
 
-export default App;
+export default App
