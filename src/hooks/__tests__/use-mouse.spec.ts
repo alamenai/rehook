@@ -1,4 +1,4 @@
-import { useMouse } from '../useMouse'
+import { useMouse } from '../use-mouse'
 import { fireEvent, renderHook } from '@testing-library/react'
 import { act } from 'react'
 import { vitest } from 'vitest'
@@ -35,7 +35,7 @@ describe('useMouse hook test', () => {
     it('should call the provided function on mouse event', () => {
         const mockFunction = vitest.fn()
 
-        const { result } = renderHook(() => useMouse('click', mockFunction)) // eslint-disable-line
+        const { result } = renderHook(() => useMouse('click', mockFunction))
 
         expect(result.current.x).toBeUndefined()
 
