@@ -24,10 +24,6 @@ Visit our [contributing guide](https://github.com/alamenai/rehook/blob/main/CONT
   <img src="https://contrib.rocks/image?repo=alamenai/rehook" />
 </a>
 
-## Deploy
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Falamenai%2Frehook)
-
 ## Stats
 
 ![Alt](https://repobeats.axiom.co/api/embed/411a9c5989586ca93ee4a27c871041e87872cfba.svg 'Repobeats analytics image')
