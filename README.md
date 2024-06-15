@@ -1,4 +1,9 @@
-<div align='center'><img src="./src/assets/icon.png"/></div>
+<div align='center'>
+
+<img src="./fish.svg"/>
+<h1>Rehook</h1> 
+
+</div>
 <p align="center">
    <code align="center">Copy & Paste . Own your hook . Customize it later.</code>
 </p>
