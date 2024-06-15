@@ -1,4 +1,4 @@
-import { useHistory } from './useHistory'
+import { useHistory } from './use-history'
 
 export const useQueryParams = () => {
     const history = useHistory()
