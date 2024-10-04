@@ -25,7 +25,7 @@ Visit our [contributing guide](https://github.com/alamenai/rehook/blob/main/CONT
 
 ## Authors
 
-<a href="https://github.com/magicuidesign/magicui/graphs/contributors">
+<a href="https://github.com/alamenai/rehook/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=alamenai/rehook" />
 </a>
 
